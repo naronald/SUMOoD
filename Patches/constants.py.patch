@@ -1,0 +1,10 @@
+--- /cygdrive/c/sumodev/sumo-0.18.0-orig/tools/traci/constants.py	2013-11-06 14:04:12.710837600 +1100
++++ constants.py	2013-11-22 14:37:40.381342400 +1100
+@@ -322,6 +322,7 @@
+ REQUEST_AIRDIST = 0x00
+ # driving distance
+ REQUEST_DRIVINGDIST = 0x01
++REQUEST_TIME  = 0x02
+ 
+ 
+ # ****************************************

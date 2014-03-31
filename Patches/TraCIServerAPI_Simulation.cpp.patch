@@ -1,0 +1,45 @@
+--- /cygdrive/c/sumodev/sumo-0.18.0-orig/src/traci-server/TraCIServerAPI_Simulation.cpp	2013-08-17 19:43:06.000000000 +1000
++++ TraCIServerAPI_Simulation.cpp	2013-11-22 13:54:49.643294300 +1100
+@@ -195,12 +195,16 @@
+             if (!server.readTypeCheckingString(inputStorage, id)) {
+                 return server.writeErrorStatusCmd(CMD_GET_SIM_VARIABLE, "Retrieval of persons at busstop requires a string.", outputStorage);
+             }
+-            MSBusStop* s = MSNet::getInstance()->getBusStop(id);
+-            if (s == 0) {
+-                return server.writeErrorStatusCmd(CMD_GET_SIM_VARIABLE, "Unknown bus stop '" + id + "'.", outputStorage);
+-            }
++            //MSBusStop* s = MSNet::getInstance()->getBusStop(id);
++            //if (s == 0) {
++            //    return server.writeErrorStatusCmd(CMD_GET_SIM_VARIABLE, "Unknown bus stop '" + id + "'.", outputStorage);
++            //}
++			MSEdge* e = MSEdge::dictionary(id);
++			if (e == 0) {
++				return server.writeErrorStatusCmd(CMD_GET_EDGE_VARIABLE, "Edge '" + id + "' is not known", outputStorage);
++			}
+             tempMsg.writeUnsignedByte(TYPE_INTEGER);
+-            tempMsg.writeInt(s->getPersonNumber());
++            tempMsg.writeInt(e->getPersonNumber());
+             break;
+         }
+         default:
+@@ -427,7 +431,20 @@
+             MSRoute route("", newRoute, false, 0, std::vector<SUMOVehicleParameter::Stop>());
+             distance = route.getDistanceBetween(roadPos1.second, roadPos2.second, &roadPos1.first->getEdge(), &roadPos2.first->getEdge());
+         }
++	} else if (distType == REQUEST_TIME) {
++        // compute driving distance
++        //if ((roadPos1.first == roadPos2.first) && (roadPos1.second <= roadPos2.second)) {
++            // same edge
++            //distance = roadPos2.second - roadPos1.second;
++        //} else {
++            MSEdgeVector newRoute;
++            MSNet::getInstance()->getRouterTT().compute(
++                &roadPos1.first->getEdge(), &roadPos2.first->getEdge(), 0, MSNet::getInstance()->getCurrentTimeStep(), newRoute);
++            MSRoute route("", newRoute, false, 0, std::vector<SUMOVehicleParameter::Stop>());
++            distance = route.getTimeBetween(roadPos1.second, roadPos2.second, &roadPos1.first->getEdge(), &roadPos2.first->getEdge());
++        //}
+     } else {
++		WRITE_WARNING("air");
+         // compute air distance (default)
+         distance = pos1.distanceTo(pos2);
+     }

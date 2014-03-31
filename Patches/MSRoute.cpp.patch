@@ -1,0 +1,59 @@
+--- /cygdrive/c/sumodev/sumo-0.18.0-orig/src/microsim/MSRoute.cpp	2013-08-17 19:43:03.000000000 +1000
++++ MSRoute.cpp	2014-03-31 14:23:10.257521000 +1100
+@@ -40,6 +40,7 @@
+ #include <utils/common/RGBColor.h>
+ #include <utils/iodevices/BinaryInputDevice.h>
+ #include <utils/iodevices/OutputDevice.h>
++#include <string>
+ 
+ #ifdef CHECK_MEMORY_LEAKS
+ #include <foreign/nvwa/debug_new.h>
+@@ -281,6 +282,48 @@
+                     }
+                 }
+             }
++#endif
++        }
++        isFirstIteration = false;
++    }
++    return distance;
++}
++
++SUMOReal
++MSRoute::getTimeBetween(SUMOReal fromPos, SUMOReal toPos, const MSEdge* fromEdge, const MSEdge* toEdge) const {
++    bool isFirstIteration = true;
++    SUMOReal distance = -fromPos/fromEdge->getSpeedLimit();
++    MSEdgeVector::const_iterator it = std::find(myEdges.begin(), myEdges.end(), fromEdge);
++
++    if (it == myEdges.end() || std::find(it, myEdges.end(), toEdge) == myEdges.end()) {
++        // start or destination not contained in route
++        return std::numeric_limits<SUMOReal>::max();
++    }
++    if (fromEdge == toEdge && fromPos <= toPos) {
++        // destination position is on start edge
++		return (toPos - fromPos)/(fromEdge->getSpeedLimit());
++    }
++    for (; it != end(); ++it) {
++        if ((*it) == toEdge && !isFirstIteration) {
++            distance += toPos/(toEdge->getSpeedLimit());
++            break;
++        } else {
++            const std::vector<MSLane*>& lanes = (*it)->getLanes();
++            distance += lanes[0]->getLength()/lanes[0]->getSpeedLimit();
++#ifdef HAVE_INTERNAL_LANES
++            // add length of internal lanes to the result
++            for (std::vector<MSLane*>::const_iterator laneIt = lanes.begin(); laneIt != lanes.end(); ++laneIt) {
++                const MSLinkCont& links = (*laneIt)->getLinkCont();
++                for (MSLinkCont::const_iterator linkIt = links.begin(); linkIt != links.end(); ++linkIt) {
++                    if ((*linkIt) == 0 || (*linkIt)->getLane() == 0) {
++                        continue;
++                    }
++                    std::string succLaneId = (*(it + 1))->getLanes()[0]->getID();
++                    if ((*linkIt)->getLane()->getID().compare(succLaneId) == 0) {
++						distance += (*linkIt)->getLength()/(*linkIt)->getLane()->getSpeedLimit();
++                    }
++                }
++            }
+ #endif
+         }
+         isFirstIteration = false;

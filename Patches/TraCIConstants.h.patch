@@ -1,0 +1,52 @@
+--- /cygdrive/c/sumodev/sumo-0.18.0-orig/src/traci-server/TraCIConstants.h	2013-08-17 19:43:06.000000000 +1000
++++ TraCIConstants.h	2013-11-06 10:11:25.117217900 +1100
+@@ -256,6 +256,22 @@
+ // response: subscribe GUI variable
+ #define RESPONSE_SUBSCRIBE_GUI_VARIABLE 0xec
+ 
++// command: subscribe GUI context
++#define CMD_SUBSCRIBE_PERSON_CONTEXT 0x8d
++// response: subscribe GUI context
++#define RESPONSE_SUBSCRIBE_PERSON_CONTEXT 0x9d
++// command: get GUI variable
++#define CMD_GET_PERSON_VARIABLE 0xad
++// response: get GUI variable
++#define RESPONSE_GET_PERSON_VARIABLE 0xbd
++// command: set GUI variable
++#define CMD_SET_PERSON_VARIABLE 0xcd
++// command: subscribe GUI variable
++#define CMD_SUBSCRIBE_PERSON_VARIABLE 0xdd
++// response: subscribe GUI variable
++#define RESPONSE_SUBSCRIBE_PERSON_VARIABLE 0xed
++
++
+ 
+ // ****************************************
+ // POSITION REPRESENTATIONS
+@@ -339,6 +355,8 @@
+ #define REQUEST_AIRDIST 0x00
+ // driving distance
+ #define REQUEST_DRIVINGDIST 0x01
++// driving distance
++#define REQUEST_TIME 0x02
+ 
+ 
+ // ****************************************
+@@ -587,6 +605,8 @@
+ #define VAR_PERSON_NUMBER 0x67
+ #define VAR_BUS_STOP_WAITING 0x67
+ 
++#define VAR_STAGE 0x68
++
+ 
+ 
+ // current time step (get: simulation)
+@@ -655,6 +675,8 @@
+ // validates current route (vehicles)
+ #define VAR_ROUTE_VALID 0x92
+ 
++#define VAR_WAIT_FOR 0x93
++
+ 
+ // zoom
+ #define VAR_VIEW_ZOOM 0xa0
