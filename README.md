@@ -44,7 +44,7 @@ Vehicles are specified in a normal SUMO .rou file; the vehicle type is "taxi".
 
 The simulation is started with:
 
-python drt.py <config> <run>
+python drt.py `<config>` `<run>`
 
 Acknowledgements
 ----------------
