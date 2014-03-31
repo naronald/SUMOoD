@@ -33,7 +33,7 @@ Changes are required to the SUMO code as well as the TraCI Python interface.
 Running
 -------
 
-The request input files are named sumo-<scenario>-<config>-<run>-people.csv,
+The request input files are named sumo-&lt;scenario&gt;-&lt;config&gt;-&lt;run&gt;-people.csv,
 where scenario and config are strings, and run is a 2-digit integer. In my input
 files, the config is an integer-character pair, where the integer signifies the
 number of vehicles (i.e., 3, 5, 8, or 10) and the character signifies the demand
@@ -44,7 +44,7 @@ Vehicles are specified in a normal SUMO .rou file; the vehicle type is "taxi".
 
 The simulation is started with:
 
-python drt.py `<config>` `<run>`
+python drt.py &lt;config&gt; &lt;run&gt;
 
 Acknowledgements
 ----------------
