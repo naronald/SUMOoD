@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nodes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.sf.net/xsd/nodes_file.xsd">
+    <node id="11" x="-1000.0" y="0.0" />
+    <node id="12" x="0.0" y="0.0" />
+    <node id="13" x="+1000.0" y="0.0" />
+    <node id="21" x="-1000.0" y="1000.0" />
+    <node id="22" x="0.0" y="1000.0" />
+    <node id="23" x="+1000.0" y="1000.0" />
+    <node id="31" x="-1000.0" y="2000.0" />
+    <node id="32" x="0.0" y="2000.0" />
+    <node id="33" x="+1000.0" y="2000.0" />
+	<node id="depot" x="-1000.0" y="-100"/>
+</nodes>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<edges xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.sf.net/xsd/edges_file.xsd">
+    <edge from="11" id="1112" to="12" numLanes="2" speed="16.7"/>
+    <edge from="12" id="1213" to="13" numLanes="2" speed="16.7"/>
+    <edge from="21" id="2122" to="22" numLanes="2" speed="16.7"/>
+    <edge from="22" id="2223" to="23" numLanes="2" speed="16.7"/>
+    <edge from="31" id="3132" to="32" numLanes="2" speed="16.7"/>
+    <edge from="32" id="3233" to="33" numLanes="2" speed="16.7"/>
+    <edge from="11" id="1121" to="21" numLanes="2" speed="16.7"/>
+    <edge from="21" id="2131" to="31" numLanes="2" speed="16.7"/>
+    <edge from="12" id="1222" to="22" numLanes="2" speed="16.7"/>
+    <edge from="22" id="2232" to="32" numLanes="2" speed="16.7"/>
+    <edge from="13" id="1323" to="23" numLanes="2" speed="16.7"/>
+    <edge from="23" id="2333" to="33" numLanes="2" speed="16.7"/>
+    <edge from="12" id="1211" to="11" numLanes="2" speed="16.7"/>
+    <edge from="13" id="1312" to="12" numLanes="2" speed="16.7"/>
+    <edge from="22" id="2221" to="21" numLanes="2" speed="16.7"/>
+    <edge from="23" id="2322" to="22" numLanes="2" speed="16.7"/>
+    <edge from="32" id="3231" to="31" numLanes="2" speed="16.7"/>
+    <edge from="33" id="3332" to="32" numLanes="2" speed="16.7"/>
+    <edge from="21" id="2111" to="11" numLanes="2" speed="16.7"/>
+    <edge from="31" id="3121" to="21" numLanes="2" speed="16.7"/>
+    <edge from="22" id="2212" to="12" numLanes="2" speed="16.7"/>
+    <edge from="32" id="3222" to="22" numLanes="2" speed="16.7"/>
+    <edge from="23" id="2313" to="13" numLanes="2" speed="16.7"/>
+    <edge from="33" id="3323" to="23" numLanes="2" speed="16.7"/>
+	<edge from="depot" id="out" to="11" numLanes="2" speed="16.7"/>
+	<edge from="11" id="in" to="depot" numLanes="2" speed="16.7"/>
+</edges>

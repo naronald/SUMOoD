@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 11/19/13 17:15:56 by SUMO duarouter Version 0.18.0
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.sf.net/xsd/duarouterConfiguration.xsd">
+
+    <input>
+        <net-file value="grid.net.xml"/>
+        <flow-files value="flows.xml"/>
+    </input>
+
+    <output>
+        <output-file value="grid.rou.xml"/>
+    </output>
+
+</configuration>
+-->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.sf.net/xsd/routes_file.xsd">
+	<vType id="taxi" accel="0.8" decel="4.5" sigma="0.5" length="5"
+maxSpeed="70" color="1,0,0"/>
+    <vehicle id="taxi1" depart="60.00" type="taxi">
+        <route edges="out"/>
+    </vehicle>
+    <vehicle id="taxi2" depart="60.00" type="taxi">
+        <route edges="out"/>
+    </vehicle>
+    <vehicle id="taxi3" depart="60.00" type="taxi">
+        <route edges="out"/>
+    </vehicle>
+</routes>
