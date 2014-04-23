@@ -343,8 +343,6 @@ class Vehicle:
             elif nextUpdate.stopType == StopType.DROPOFF:
                 self.countPassengers -= 1
                 peopleCollection.updatePersonDropoff(nextUpdate.personID, step)
-                peopleCollection.incrementPersonDistance(nextUpdate.personID,
-                                                         nextUpdate.pos)
                 self.totalPassengers += 1
                 self.currentPassengers.remove(nextUpdate.personID)
                 self.occupancyTime += \

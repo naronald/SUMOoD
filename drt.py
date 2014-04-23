@@ -55,7 +55,7 @@ def run(runId):
     traci.simulation.subscribe([tc.VAR_DEPARTED_VEHICLES_IDS,
                                 tc.VAR_ARRIVED_VEHICLES_IDS])
 
-    filename = 'Input1c/sumo-%s-people.csv' % (runId)
+    filename = 'SampleInput/Requests/1a/sumo-%s-people.csv' % (runId)
     peopleCollection.readFile(filename)
     persons = peopleCollection.getList()
     persons.sort()
@@ -65,8 +65,8 @@ def run(runId):
         #traci.simulationStep()
         doStep()
 
-    peopleCollection.output('./sumo-output1c/', runId)
-    vehicleCollection.output('./sumo-output1c/', runId)
+    peopleCollection.output('./output/sumo-output1a/', runId)
+    vehicleCollection.output('./output/sumo-output1a/', runId)
     traci.close()
 
 
@@ -110,13 +110,13 @@ def doStep():
 
 if __name__ == "__main__":
 
-    sumoExe = SUMOGUI
-    sumoConfig = "sumo-input/grid.sumocfg"
+    sumoExe = SUMO
+    sumoConfig = "./SampleInput/SUMO/grid.sumocfg"
     sumoProcess = subprocess.Popen([sumoExe, sumoConfig], stdout=sys.stdout,
                                    stderr=sys.stderr)
 
     
-    runId = "1c-%s-%02d" % (sys.argv[1], int(sys.argv[2]))
+    runId = "1a-%s-%02d" % (sys.argv[1], int(sys.argv[2]))
     print runId
     run(runId)
     sumoProcess.wait()
