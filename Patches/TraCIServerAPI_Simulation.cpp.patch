@@ -1,6 +1,6 @@
-465a466,470
->         } else if (distType == REQUEST_TIME) {
->             MSEdgeVector newRoute;
->             MSNet::getInstance()->getRouterTT().compute(&roadPos1.first->getEdge(), &roadPos2.first->getEdge(), 0, MSNet::getInstance()->getCurrentTimeStep(), newRoute);
->             MSRoute route("", newRoute, false, 0, std::vector<SUMOVehicleParameter::Stop>());
->             distance = route.getTimeBetween(roadPos1.second, roadPos2.second, &roadPos1.first->getEdge(), &roadPos2.first->getEdge());
+472a473,477
+>     } else if (distType == REQUEST_TIME) {
+>         MSEdgeVector newRoute;
+>         MSNet::getInstance()->getRouterTT().compute(&roadPos1.first->getEdge(), &roadPos2.first->getEdge(), 0, MSNet::getInstance()->getCurrentTimeStep(), newRoute);
+>         MSRoute route("", newRoute, false, 0, std::vector<SUMOVehicleParameter::Stop>());
+>         distance = route.getTimeBetween(roadPos1.second, roadPos2.second, &roadPos1.first->getEdge(), &roadPos2.first->getEdge());
