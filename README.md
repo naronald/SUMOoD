@@ -26,9 +26,11 @@ http://imod-au.info/sumood.
 Installation
 ------------
 
-SUMOoD has been known to work with SUMO v0.18.0.
+SUMOoD has been known to work with SUMO v0.20.0, however was tested more
+thoroughly with SUMO v0.18.0. The patches are taken from v0.20.0.
 
-Changes are required to the SUMO code as well as the TraCI Python interface.
+Changes are required to the SUMO source code as well as the TraCI Python
+interface: see the Patches folder.
 
 Running
 -------
