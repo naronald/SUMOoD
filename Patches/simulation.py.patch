@@ -1,34 +1,13 @@
---- /cygdrive/c/sumodev/sumo-0.18.0-orig/tools/traci/simulation.py	2013-11-06 14:04:12.674834000 +1100
-+++ simulation.py	2013-11-22 14:36:39.521257000 +1100
-@@ -27,6 +27,7 @@
-                       tc.VAR_TELEPORT_ENDING_VEHICLES_NUMBER:   traci.Storage.readInt,
-                       tc.VAR_TELEPORT_ENDING_VEHICLES_IDS:      traci.Storage.readStringList,
-                       tc.VAR_DELTA_T:                           traci.Storage.readInt,
-+                      tc.VAR_BUS_STOP_WAITING:                  traci.Storage.readInt,
-                       tc.VAR_NET_BOUNDING_BOX:                  lambda result: (result.read("!dd"), result.read("!dd"))}
- subscriptionResults = traci.SubscriptionResults(_RETURN_VALUE_FUNC)
- 
-@@ -193,6 +194,23 @@
-     traci._message.string += struct.pack("!dBB", pos2, 0, distType)
-     return traci._checkResult(tc.CMD_GET_SIM_VARIABLE, tc.DISTANCE_REQUEST, "").readDouble()
- 
-+def getDistanceTime(edgeID1, pos1, edgeID2, pos2):
-+    """getDistanceRoad(string, double, string, double) -> double
-+    
-+    .
-+    """
-+    distType = tc.REQUEST_TIME
-+    traci._beginMessage(tc.CMD_GET_SIM_VARIABLE, tc.DISTANCE_REQUEST, "", 1+4 + 1+4+len(edgeID1)+8+1 + 1+4+len(edgeID2)+8+1 + 1)
-+    traci._message.string += struct.pack("!Bi", tc.TYPE_COMPOUND, 3)
-+    traci._message.string += struct.pack("!Bi", tc.POSITION_ROADMAP, len(edgeID1)) + edgeID1
-+    traci._message.string += struct.pack("!dBBi", pos1, 0, tc.POSITION_ROADMAP, len(edgeID2)) + edgeID2
-+    traci._message.string += struct.pack("!dBB", pos2, 0, distType)
-+    return traci._checkResult(tc.CMD_GET_SIM_VARIABLE, tc.DISTANCE_REQUEST, "").readDouble()
-+
-+def getBusStopWaiting(busStop):
-+    traci._beginMessage(tc.CMD_GET_SIM_VARIABLE, tc.VAR_BUS_STOP_WAITING, "", 1+4+len(busStop))
-+    traci._message.string += struct.pack("!Bi", tc.TYPE_STRING, len(busStop)) + busStop
-+    return traci._checkResult(tc.CMD_GET_SIM_VARIABLE, tc.VAR_BUS_STOP_WAITING, "").readInt()
- 
- def subscribe(varIDs=(tc.VAR_DEPARTED_VEHICLES_IDS,), begin=0, end=2**31-1):
-     """subscribe(list(integer), double, double) -> None
+291a292,303
+> def getDistanceTime(edgeID1, pos1, edgeID2, pos2):
+>     """getDistanceRoad(string, double, string, double) -> double
+> 
+>     .
+>     """
+>     distType = tc.REQUEST_TIME
+>     traci._beginMessage(tc.CMD_GET_SIM_VARIABLE, tc.DISTANCE_REQUEST, "", 1+4+1+4+len(edgeID1)+8+1 + 1+4+len(edgeID2)+8+1 + 1)
+>     traci._message.string += struct.pack("!Bi", tc.TYPE_COMPOUND, 3)
+>     traci._message.string += struct.pack("!Bi", tc.POSITION_ROADMAP, len(edgeID1)) + edgeID1
+>     traci._message.string += struct.pack("!dBBi", pos1, 0, tc.POSITION_ROADMAP, len(edgeID2)) + edgeID2
+>     traci._message.string += struct.pack("!dBB", pos2, 0, distType)
+>     return traci._checkResult(tc.CMD_GET_SIM_VARIABLE, tc.DISTANCE_REQUEST, "").readDouble()

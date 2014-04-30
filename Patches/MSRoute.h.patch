@@ -1,10 +1,2 @@
---- /cygdrive/c/sumodev/sumo-0.18.0-orig/src/microsim/MSRoute.h	2013-08-17 19:43:03.000000000 +1000
-+++ MSRoute.h	2013-11-06 10:09:26.524359800 +1100
-@@ -134,6 +134,7 @@
-      * @return             distance between the position fromPos on fromEdge and toPos on toEdge
-      */
-     SUMOReal getDistanceBetween(SUMOReal fromPos, SUMOReal toPos, const MSEdge* fromEdge, const MSEdge* toEdge) const;
-+	SUMOReal getTimeBetween(SUMOReal fromPos, SUMOReal toPos, const MSEdge* fromEdge, const MSEdge* toEdge) const;
- 
-     /// Returns the color
-     const RGBColor& getColor() const;
+136a137
+>     SUMOReal getTimeBetween(SUMOReal fromPos, SUMOReal toPos, const MSEdge* fromEdge, const MSEdge* toEdge) const;
